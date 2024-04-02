@@ -6,6 +6,7 @@ const server = http.createServer((req, res) => {
     let method = req.method;
     if (url === '/') {
         res.write("<h1>Hello this is my first app.</h2>");
+
         return res.end();
     }
     if (url === '/product') {
