@@ -5,13 +5,21 @@ const bodyParser = require('body-parser');
 // Middleware to parse JSON bodies
 app.use(bodyParser.json());
 
+// GET - Get data
+// POST - push new data
+// PUT - modify existing data
+// DELETE - delete existing data
+
+// --save
+// --save-dev
+
 // Mock database (for demonstration purposes)
 const tasks = [];
 const users = [];
 
 // POST endpoint for creating a new task
 app.post('/api/tasks', (req, res) => {
-    const { title, description } = req.body;
+    const { title, description } = req.body; //payload
 
     // Validate request body
     if (!title || !description) {

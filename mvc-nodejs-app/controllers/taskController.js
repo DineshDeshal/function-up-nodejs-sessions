@@ -1,7 +1,7 @@
 // taskController.js
 const Task = require('../models/taskModel');
 
-const tasks = [];
+const tasks = []; //local db
 
 function getAllTasks(req, res) {
     res.send(tasks);

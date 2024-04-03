@@ -1,7 +1,7 @@
 // userController.js
 const User = require('../models/userModel');
 
-const users = [];
+const users = []; //local db
 
 function getAllUsers(req, res) {
     res.send(users);
