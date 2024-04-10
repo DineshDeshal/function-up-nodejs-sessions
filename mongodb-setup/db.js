@@ -1,40 +1,27 @@
-// mongoCLient is the method to establish connection to mongodb database
-// mongodb driver
 const { MongoClient } = require('mongodb');
 
-const dbUri = 'mongodb+srv://vishal-thakre-db-1:aXP!Qdn8.r8Bm4b@democluster.a6ar2ia.mongodb.net/?retryWrites=true&w=majority&appName=demoCluster';
+// const dbUri = 'mongodb+srv://vishalthakre18:DAWOUQTfiBkL2Awh@cluster0.jvliriy.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0';
+
+const dbUri = 'mongodb+srv://vishal-thakre-db-1:aXP!Qdn8.r8Bm4b@democluster.a6ar2ia.mongodb.net/?retryWrites=true&w=majority&appName=demoCluster'
 
 let db;
 
 async function connectToDatabase() {
     const client = new MongoClient(dbUri);
     try {
-        console.log(client);
         await client.connect();
-        console.log('Connected to mongodb 1');
+        console.log('Connected to MongoDB');
         db = client.db('tasks');
-    }
-    catch (err) {
-        console.log(err);
+    } catch (error) {
+        console.error('Error connecting to MongoDB:', error);
     }
 }
 
 function getDB() {
     if (!db) {
-        throw new Error('DB connection has not been established.')
+        throw new Error('Database connection has not been established');
     }
     return db;
 }
 
-module.exports = { connectToDatabase, getDB }
-
-
-
-
-
-
-
-
-
-
-
+module.exports = { connectToDatabase, getDB };
