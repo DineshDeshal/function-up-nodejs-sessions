@@ -2,7 +2,7 @@ const { MongoClient } = require('mongodb');
 
 // const dbUri = 'mongodb+srv://vishalthakre18:DAWOUQTfiBkL2Awh@cluster0.jvliriy.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0';
 
-const dbUri = 'mongodb+srv://vishal-thakre-db-1:aXP!Qdn8.r8Bm4b@democluster.a6ar2ia.mongodb.net/?retryWrites=true&w=majority&appName=demoCluster'
+const dbUri = 'mongodb+srv://vishal-thakre-db-1:4xOGV3cHrhPZf9yj@democluster.a6ar2ia.mongodb.net/users?retryWrites=true&w=majority&appName=demoCluster'
 
 let db;
 
@@ -11,16 +11,13 @@ async function connectToDatabase() {
     try {
         await client.connect();
         console.log('Connected to MongoDB');
-        db = client.db('tasks');
+        db = client.db('users');
     } catch (error) {
         console.error('Error connecting to MongoDB:', error);
     }
 }
 
 function getDB() {
-    if (!db) {
-        throw new Error('Database connection has not been established');
-    }
     return db;
 }
 
