@@ -48,6 +48,25 @@ app.post('/user', async (req, res) => {
     }
 });
 
+app.get('/users', async (req, res) => {
+    try {
+        const { age, email } = req.query;
+
+        const query = {};
+
+        if (age) query.age = { $and: [{ $eq: 10 }, { $eq: 21 }] }; // age===10 && age ===21
+        if (email) query.email = { $eq: email }
+
+
+        const users = await User.find(query);
+        res.status(200).json(users);
+        // filter the data from valid documents
+    }
+    catch (e) {
+        res.status(500).json(e.message);
+    }
+});
+
 mongoose.connect('mongodb+srv://vishal-thakre-db-1:53y0CBVhOiPdpWEc@democluster.a6ar2ia.mongodb.net/users?retryWrites=true&w=majority&appName=demoCluster').then(res => {
     app.listen(3000);
     console.log("PORT IS RUNNING");
