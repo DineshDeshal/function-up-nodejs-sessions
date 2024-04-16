@@ -10,15 +10,17 @@ app.use(bodyParser.json());
 // model
 const userSchema = new mongoose.Schema({
     name: String,
-    age: {
-        type: Number,
-    },
+    age: Number,
     email: String
 })
 
 const studentSchema = new mongoose.Schema({
     name: String,
-    age: Number,
+    age: {
+        type: Number,
+        min: 18,
+        max: 100
+    },
     email: String
 })
 
@@ -95,7 +97,7 @@ app.post('/users', async (req, res) => {
 
 
 mongoose.connect(
-    'mongodb+srv://vishal-thakre-db-1:4xOGV3cHrhPZf9yj@democluster.a6ar2ia.mongodb.net/users?retryWrites=true&w=majority&appName=demoCluster'
+    'mongodb+srv://vishal-thakre-db-1:53y0CBVhOiPdpWEc@democluster.a6ar2ia.mongodb.net/users?retryWrites=true&w=majority&appName=demoCluster'
 ).then(result => {
     app.listen(3000);
 }).catch(e => {
