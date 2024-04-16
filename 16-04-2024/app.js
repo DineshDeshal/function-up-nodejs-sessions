@@ -15,7 +15,9 @@ const userSchema = new mongoose.Schema({
     email: {
         type: String,
         required: true, //mandatory
-        unique: true
+        unique: true,
+        match: [/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/, 'Invalid email format']
+        // regex = regular expression
     },
     age: {
         type: Number,
