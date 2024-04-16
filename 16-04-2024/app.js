@@ -8,14 +8,28 @@ app.use(bodyParser.json());
 const userSchema = new mongoose.Schema({
     username: {
         type: String,
-        required: true //mandatory
+        required: true, //mandatory
+        minlength: 5,
+        maxlength: 20
     },
-    email: String,
+    email: {
+        type: String,
+        required: true, //mandatory
+        unique: true
+    },
     age: {
         type: Number,
         min: 18,
         max: 50,
         required: true //mandatory
+    },
+    status: {
+        type: String,
+        enum: ['active', 'inactive', 'failed'],
+    },
+    createdAt: {
+        type: Date,
+        default: Date.now()
     }
 });
 
@@ -28,7 +42,7 @@ app.post('/user', async (req, res) => {
         res.status(200).json(newUser);
     }
     catch (e) {
-        res.status(500).json(e);
+        res.status(500).json(e.message);
     }
 });
 
